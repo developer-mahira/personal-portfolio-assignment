@@ -7,19 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="navbar fade-in">
+  <header class="navbar">
   <div class="logo">
     <img src="assets/logo.jpeg" alt="logo">
   </div>
-
-  
-<button id="menu-icon" class="menu-icon" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-  <span class="menu-bar"></span>
-  <span class="menu-bar"></span>
-  <span class="menu-bar"></span>
-</button>
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
   <nav>
-    <ul id="nav-links">
+    <ul class="nav-links">
       <li><a href="index.html">home</a></li>
       <li><a href="#about">about</a></li>
       <li><a href="#experience">experience</a></li>
@@ -308,11 +307,6 @@
 </footer>
 
 
-  <script>
-  document.getElementById('menu-icon').addEventListener('click', function () {
-    document.getElementById('nav-links').classList.toggle('active');
-  });
-</script>
  
 </body>
 </html>

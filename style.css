@@ -31,36 +31,30 @@ section {
   position: relative;
 }
 
+/* ===== NAVBAR ===== */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 80px;
   background: rgba(15, 15, 30, 0.85);
   backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
   z-index: 100;
 }
 
-
-.logo {
-  position: absolute;
-  left: 60px;
-  display: flex;
-  align-items: center;
-}
-
+/* Logo */
 .logo img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   border: 2px solid #ff00ff;
   box-shadow: 0 0 12px rgba(255, 0, 255, 0.4);
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .logo img:hover {
@@ -68,25 +62,109 @@ section {
   box-shadow: 0 0 25px #ff00ff, 0 0 40px #6A0DAD;
 }
 
-nav ul {
+/* Navigation Links */
+.nav-links {
   list-style: none;
   display: flex;
   gap: 35px;
 }
 
-nav a {
+.nav-links a {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
-nav a:hover {
+.nav-links a:hover {
   color: #ff00ff;
   text-shadow: 0 0 8px #ff00ff;
 }
 
+/* ===== MOBILE MENU ICON ===== */
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.menu-icon span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .navbar {
+    height: 70px;
+    padding: 0 25px;
+    background: #111121; /* solid background on mobile */
+  }
+
+  /* Hide normal nav and show menu icon */
+  .menu-icon {
+    display: flex;
+    z-index: 101;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: #111121;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: left 0.3s ease;
+  }
+
+  /* Checkbox checked = menu open */
+  #menu-toggle:checked ~ nav .nav-links {
+    left: 0;
+  }
+
+  /* Animate hamburger to X */
+  #menu-toggle:checked + .menu-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  #menu-toggle:checked + .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle:checked + .menu-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  .nav-links a {
+    font-size: 18px;
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .menu-icon span {
+    width: 24px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+}
 
 .hero {
   display: flex;
@@ -1549,132 +1627,3 @@ section {
   }
 }
 
-/* Hide hamburger on desktop */
-.menu-icon {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #fff;
-  position: absolute;
-  right: 30px;
-  top: 35px;
-}
-
-/* ===== MOBILE NAVBAR ===== */
-@media (max-width: 768px) {
-  .navbar {
-    justify-content: space-between;
-    padding: 0 20px;
-  }
-
-  /* Show hamburger */
-  .menu-icon {
-    display: block;
-  }
-
-  /* Hide nav links initially */
-  nav ul {
-    position: absolute;
-    top: 80px;
-    right: 0;
-    background: rgba(15, 15, 30, 0.95);
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-    padding: 20px 0;
-  }
-
-  /* Show links when active */
-  nav ul.active {
-    display: flex;
-  }
-
-  nav a {
-    font-size: 16px;
-    padding: 10px 0;
-    width: 100%;
-    display: block;
-  }
-}
-
-/* HAMBURGER BUTTON (hidden on desktop) */
-.menu-icon {
-  display: none;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  width: 44px;
-  height: 38px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 200;
-  padding: 6px;
-  align-items: center;
-  justify-content: center;
-}
-
-/* three bars */
-.menu-bar {
-  display: block;
-  height: 3px;
-  width: 100%;
-  margin: 5px 0;
-  border-radius: 3px;
-  background: #fff;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-/* when open, animate into X */
-.menu-icon.open .menu-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.menu-icon.open .menu-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.menu-icon.open .menu-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-/* MOBILE NAVBEHAVIOR */
-@media (max-width: 768px) {
-  /* show hamburger */
-  .menu-icon { display: flex; }
-
-  /* make the main nav full width dropdown (hidden by default) */
-  nav {
-    position: relative;
-  }
-
-  nav ul {
-    position: absolute;
-    top: 70px;            /* below navbar */
-    right: 0;
-    left: 0;
-    margin: 0;
-    padding: 18px 0;
-    display: none;        /* hidden by default on mobile */
-    flex-direction: column;
-    gap: 12px;
-    background: rgba(15,15,30,0.98);
-    list-style: none;
-    z-index: 150;
-  }
-
-  /* displayed when JS adds .active */
-  nav ul.active {
-    display: flex;
-  }
-
-  /* style links for mobile */
-  nav ul li {
-    width: 100%;
-  }
-  nav ul li a {
-    display: block;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-
-  /* keep logo left aligned */
-  .logo { left: 20px; }
-
-  /* optional: make navbar height compact on mobile */
-  .navbar { height: 70px; padding: 0 12px; }
-}

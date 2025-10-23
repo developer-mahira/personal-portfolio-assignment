@@ -22,7 +22,7 @@
       <li><a href="index.html">home</a></li>
       <li><a href="#about">about</a></li>
       <li><a href="#experience">experience</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#projects">projects</a></li>
     </ul>
@@ -307,6 +307,18 @@
 </footer>
 
 
+
+<script>
+    // Auto-close mobile menu when a link is clicked
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.checked = false; // close menu
+      });
+    });
+  </script>
  
 </body>
 </html>
